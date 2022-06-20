@@ -2,4 +2,4 @@
 
 namespace Domain.Records.Response.Search;
 
-public record SearchResponse(CategorySearchResponse CategorySearchResponse, PeopleApiResponse PeopleApiResponse);
+public record SearchResponse(JokeSearchResponse JokeSearchResponse, PeopleApiResponse PeopleApiResponse);

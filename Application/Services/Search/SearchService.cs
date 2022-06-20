@@ -36,7 +36,7 @@ public class SearchService : ISearchService
         return peopleSearchResult;
     }
 
-    private async Task<CategorySearchResponse> GetCategoriesSearchResult(string query)
+    private async Task<JokeSearchResponse> GetCategoriesSearchResult(string query)
     {
         var categoriesClient = _httpClientFactory.CreateClient(OpenApiContant.CategoriesApi);
         var categoriesSearchRequest = new HttpRequestMessage(HttpMethod.Get, $"jokes/search?query={query}");
@@ -44,7 +44,7 @@ public class SearchService : ISearchService
 
         categoriesSearchResponse.EnsureSuccessStatusCode();
         var categoresSearchContent = await categoriesSearchResponse.Content.ReadAsStringAsync();
-        var categoriesSearchResult = JsonConvert.DeserializeObject<CategorySearchResponse>(categoresSearchContent);
+        var categoriesSearchResult = JsonConvert.DeserializeObject<JokeSearchResponse>(categoresSearchContent);
 
         return categoriesSearchResult;
     }

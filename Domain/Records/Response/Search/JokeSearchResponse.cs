@@ -1,6 +1,6 @@
 ﻿namespace Domain.Records.Response.Search;
 
-public class CategorySearchResponse
+public class JokeSearchResponse
 {
     public int total { get; set; }
     public List<CategoriesDetails> result { get; set; }
