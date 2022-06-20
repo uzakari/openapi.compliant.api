@@ -13,7 +13,7 @@ public class PeopleService : IPeopleService
     {
         _httpClientFactory = httpClientFactory;
     }
-    public async Task<PeopleApiResponse> GetPeopleAsync(string pageNo)
+    public async Task<PeopleApiResponse> GetPeopleAsync(string? pageNo)
     {
 
         var client = _httpClientFactory.CreateClient(OpenApiContant.PeopleApi);

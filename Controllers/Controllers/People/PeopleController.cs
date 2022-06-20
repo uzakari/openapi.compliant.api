@@ -16,8 +16,8 @@ public class PeopleController : ControllerBase
         _meditor = meditor;
     }
 
-    [HttpGet("{pageNo?}")]
-    public async Task<ActionResult<PeopleApiResponse>> People(string pageNo = default)
+    [HttpGet]
+    public async Task<ActionResult<PeopleApiResponse>> People([FromQuery] string? pageNo)
     {
         return Ok(await _meditor.Send(new GetPeopleQuery(pageNo)));
     }

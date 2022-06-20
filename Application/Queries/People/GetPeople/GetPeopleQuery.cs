@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Queries.People.GetPeople;
 
-public record GetPeopleQuery(string pageNo) : IRequest<PeopleApiResponse>;
+public record GetPeopleQuery(string? pageNo) : IRequest<PeopleApiResponse>;
 
 
 
@@ -18,6 +18,6 @@ public class GetPeopleQueryHandler : IRequestHandler<GetPeopleQuery, PeopleApiRe
     }
     public async Task<PeopleApiResponse> Handle(GetPeopleQuery request, CancellationToken cancellationToken)
     {
-        return await _peopleService.GetPeopleAsync(request.pageNo);
+        return await _peopleService.GetPeopleAsync(request?.pageNo);
     }
 }

@@ -8,9 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(
-        setupAction =>
+builder.Services.AddSwaggerGen(setupAction =>
         {
 
             setupAction.SwaggerDoc("Compliantapi", new()
@@ -26,8 +31,7 @@ builder.Services.AddSwaggerGen(
 
             setupAction.IncludeXmlComments(path);
 
-        }
-    );
+        } );
 
 var app = builder.Build();
 
@@ -42,6 +46,8 @@ app.UseSwaggerUI(setupAction =>
 app.UseCustomExceptionHandler();
 
 app.UseHttpsRedirection();
+
+app.UseCors("Open");
 
 app.UseAuthorization();
 
